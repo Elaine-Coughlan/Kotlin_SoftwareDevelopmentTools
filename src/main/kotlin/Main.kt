@@ -1,5 +1,7 @@
 import utils.readIntNotNull
 import java.lang.System.exit
+import io.github.oshai.kotlinlogging.KotlinLogging
+
 
 fun mainMenu(): Int {
     print(""" 
@@ -52,7 +54,10 @@ fun listNotes() {
 
 fun addNote() {
     println("add")
+    logger.info{"addNote() function invoked"}
 }
+
+private val logger = KotlinLogging.logger {}
 
 fun main(){
     runMenu()
