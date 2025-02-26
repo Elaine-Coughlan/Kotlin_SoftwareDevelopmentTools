@@ -1,7 +1,13 @@
-import utils.readIntNotNull
-import java.lang.System.exit
-import io.github.oshai.kotlinlogging.KotlinLogging
 
+import io.github.oshai.kotlinlogging.KotlinLogging
+import utils.readNextInt
+import java.lang.System.exit
+
+private val logger = KotlinLogging.logger {}
+
+fun main() {
+    runMenu()
+}
 
 fun mainMenu(): Int {
     print(""" 
@@ -15,16 +21,15 @@ fun mainMenu(): Int {
          > |   4) Delete a note             |
          > ----------------------------------
          > |   0) Exit                      |
-         > ----------------------------------
-         > ==>> """.trimMargin(">"))
-    return readIntNotNull()
+         > ---------------------------------- 
+         >""".trimMargin(">"))
+    return readNextInt(" > ==>>")
 }
 
-
-fun runMenu(){
+fun runMenu() {
     do {
         val option = mainMenu()
-        when (option){
+        when (option) {
             1 -> addNote()
             2 -> listNotes()
             3 -> updateNote()
@@ -32,33 +37,26 @@ fun runMenu(){
             0 -> exitApp()
             else -> println("Invalid option entered: $option")
         }
-    }while (true)
-}
-
-fun exitApp() {
-    println("exit")
-    exit(0)
-}
-
-fun deleteNote() {
-    println("delete")
-}
-
-fun updateNote() {
-    println("update")
-}
-
-fun listNotes() {
-    println("list")
+    } while (true)
 }
 
 fun addNote() {
-    println("add")
-    logger.info{"addNote() function invoked"}
+    logger.info { "addNote() function invoked" }
 }
 
-private val logger = KotlinLogging.logger {}
+fun listNotes() {
+    logger.info { "listNotes() function invoked" }
+}
 
-fun main(){
-    runMenu()
+fun updateNote() {
+    logger.info { "updateNote() function invoked" }
+}
+
+fun deleteNote() {
+    logger.info { "deleteNote() function invoked" }
+}
+
+fun exitApp() {
+    println("Exiting...bye")
+    exit(0)
 }
